@@ -61,13 +61,13 @@
 
                 <!-- Nav Item - Tables -->
                 <li class="nav-item {{ ($title == 'Companies') ? 'active' : '' }}">
-                    <a class="nav-link" href="/companies">
+                    <a class="nav-link" href="{{ route('companies.index') }}">
                         <i class="fas fa-fw fa-table"></i>
                         <span>Companies</span></a>
                 </li>
                 <!-- Nav Item - Tables -->
                 <li class="nav-item {{ ($title == 'Employees') ? 'active' : '' }}">
-                    <a class="nav-link" href="/employees">
+                    <a class="nav-link" href="{{ route('employees.index') }}">
                         <i class="fas fa-fw fa-table"></i>
                         <span>Employees</span></a>
                 </li>

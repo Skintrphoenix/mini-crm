@@ -9,7 +9,7 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Companies</h6>
-        <a href="/companies/create" class="btn btn-small btn-primary">Add new company</a>
+        <a href="{{ route('companies.create') }}" class="btn btn-small btn-primary">Add new company</a>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -41,8 +41,8 @@
                         <td><a href="http://{{ $value->website }}">{{ $value->website }}</a> </td>
 
                         <td>
-                            <a class="btn btn-small btn-warning" href="{{ URL::to('companies/' . $value->id . '/edit') }}">Edit</a>
-                            <form action="{{ URL::to('companies/' . $value->id) }}" method="post">
+                            <a class="btn btn-small btn-warning" href="{{ route('companies.edit', $value->id) }}">Edit</a>
+                            <form action="{{ route('companies.destroy', $value->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <input type="submit" value="Delete" class="btn btn-small btn-danger">

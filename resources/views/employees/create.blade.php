@@ -1,6 +1,6 @@
 @extends('/layouts.master')
 @section('container')
-<form action="{{ URL::to('employees') }}" method="post">
+<form action="{{ route('employees.store') }}" method="post">
     @csrf
     @method('POST')
 

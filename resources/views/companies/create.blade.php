@@ -1,7 +1,7 @@
 @extends('/layouts.master')
 @section('container')
 
-<form action="{{ URL::to('companies') }}" method="post" enctype="multipart/form-data">
+<form action="{{ route('companies.store') }}" method="post" enctype="multipart/form-data">
 
     @csrf
     @method('POST')

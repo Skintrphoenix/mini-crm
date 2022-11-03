@@ -9,7 +9,7 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Employees</h6>
-        <a href="/employees/create" class="btn btn-small btn-primary">Add new employee</a>
+        <a href="{{ route('employees.create') }}" class="btn btn-small btn-primary">Add new employee</a>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -46,8 +46,8 @@
                         <td>{{ $value->phone }}</td>
 
                         <td>
-                            <a class="btn btn-small btn-warning" href="{{ URL::to('employees/' . $value->id . '/edit') }}">Edit</a>
-                            <form action="{{ URL::to('employees/' . $value->id) }}" method="post">
+                            <a class="btn btn-small btn-warning" href="{{ route('employees.edit', $value->id) }}">Edit</a>
+                            <form action="{{ route('employees.destroy', $value->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <input type="submit" value="Delete" class="btn btn-small btn-danger">
