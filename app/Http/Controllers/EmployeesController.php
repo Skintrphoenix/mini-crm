@@ -7,6 +7,7 @@ use App\Models\Companies;
 use App\Models\Employees;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Yajra\DataTables\Facades\DataTables;
 
 class EmployeesController extends Controller
 {
@@ -15,11 +16,30 @@ class EmployeesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function index(Request $request)
     {
-        $employees = Employees::all();
+        if ($request->ajax()) {
+            return DataTables::eloquent(Employees::with('company'))
+            ->addColumn('company', function (Employees $emp) {
+                if ($emp->hasCompany()) {
+                    return $emp->company->name;
+                } else {
+                    return "-";
+                }
+            })
+            ->addColumn('name', function (Employees $emp) {
+                return $emp->first_name . " " . $emp->last_name;
+            })
+            ->addColumn('action', '<a class="btn btn-small btn-warning" href="{{ route("employees.edit", $id) }}">Edit</a> <a class="btn btn-small btn-danger" href="#" data-toggle="modal" data-target="#deleteModal" onclick="loadDeleteModal(`{{ route("employees.destroy", $id) }}`)">Delete</a>')
+            ->removeColumn('company_id')
+            ->removeColumn('first_name')
+            ->removeColumn('last_name')
+            ->rawColumns(['action'])
+            ->toJson();
+        }
         $title = 'Employees';
-        return view('employees.index', compact('employees', 'title'));
+        return view('employees.index', compact('title'));
     }
 
     /**

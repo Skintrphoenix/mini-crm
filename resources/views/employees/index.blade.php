@@ -13,7 +13,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="emp_tables" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -32,26 +32,6 @@
                         <th>Action</th>
                     </tr>
                 </tfoot>
-                <tbody>
-                    @foreach($employees->all() as $key => $value)
-                    <tr>
-                        <td>{{ $value->first_name }} {{ $value->last_name }}</td>
-                        
-                        @if($value->hasCompany())
-                            <td>{{ $value->company->name }}</td>
-                        @else
-                            <td>-</td>
-                        @endif
-                        <td>{{ $value->email }}</td>
-                        <td>{{ $value->phone }}</td>
-
-                        <td>
-                            <a class="btn btn-small btn-warning" href="{{ route('employees.edit', $value->id) }}">Edit</a>
-                            <a class="btn btn-small btn-danger" href="#" data-toggle="modal" data-target="#deleteModal" onclick="loadDeleteModal('{{ route('employees.destroy', $value->id) }}')">Delete</a>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
 
             </table>
         </div>

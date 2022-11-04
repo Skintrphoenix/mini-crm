@@ -13,7 +13,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered" width="100%" cellspacing="0" id="comp_tables">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -32,21 +32,7 @@
                         <th>Action</th>
                     </tr>
                 </tfoot>
-                <tbody>
-                    @foreach($companies as $key => $value)
-                    <tr>
-                        <td>{{ $value->name }}</td>
-                        <td>{{ $value->email }}</td>
-                        <td><a href="{{ asset('storage/images/'.$value->logo . '.jpg') }}"><img src="{{ asset('storage/images/'. $value->logo . '.jpg') }}" alt="" height="40px"></a></td>
-                        <td><a href="http://{{ $value->website }}">{{ $value->website }}</a> </td>
-
-                        <td>
-                            <a class="btn btn-small btn-warning" href="{{ route('companies.edit', $value->id) }}">Edit</a>
-                            <a class="btn btn-small btn-danger" href="#" data-toggle="modal" data-target="#deleteModal" onclick="loadDeleteModal('{{ route('companies.destroy', $value->id) }}')">Delete</a>    
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
+                
 
             </table>
         </div>
@@ -76,6 +62,5 @@
             </div>
         </div>
     </div>
-@endsection
 
-                
+@endsection

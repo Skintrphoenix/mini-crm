@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Yajra\DataTables\Facades\DataTables;
 
 class CompaniesController extends Controller
 {
@@ -18,10 +19,19 @@ class CompaniesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->ajax()){
+            return DataTables::eloquent(Companies::query())
+            ->addColumn('logo', '<a href="{{ asset("storage/images/".$logo . ".jpg") }}"><img src="{{ asset("storage/images/". $logo . ".jpg") }}" alt="" height="40px"></a>')
+            ->addColumn('website', '<a href="http://{{ $website }}">{{ $website }}</a>')
+            ->addColumn('action', '<a class="btn btn-small btn-warning" href="{{ route("companies.edit", $id) }} ">Edit</a> <a class="btn btn-small btn-danger" href="#" data-toggle="modal" data-target="#deleteModal" onclick="loadDeleteModal(` {{route("companies.destroy", $id) }} `)">Delete</a>'
+            )
+            ->rawColumns(['logo', 'website', 'action'])
+            ->toJson();
+        }
         $companies = Companies::all();
-        return view('companies.index', ['companies' => $companies, 'title' => 'Companies']);
+        return view('companies.index', [ 'title' => 'Companies']);
     }
 
     /**
