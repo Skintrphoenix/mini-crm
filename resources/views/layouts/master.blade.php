@@ -378,7 +378,7 @@
     <script src="/js/demo/datatables-demo.js"></script>
     <script src="/js/main.js"></script>
 
-    @yield('script')
+    @stack('script')
 
    
 </body>

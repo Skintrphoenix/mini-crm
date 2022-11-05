@@ -61,7 +61,7 @@
         </div>
     </div>
 @endsection
-@section('script')
+@push('script')
 <script>
         
         $('#emp_tables').DataTable({
@@ -93,4 +93,4 @@
         });
     </script>
 
-@endsection 
+@endpush

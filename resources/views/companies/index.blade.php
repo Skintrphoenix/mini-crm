@@ -64,7 +64,7 @@
     </div>
 
 @endsection
-@section('script')
+@push('script')
 <script>
     $('#comp_tables').DataTable({
             processing: true,
@@ -94,4 +94,4 @@
             ]
         });
 </script>
-@endsection
+@endpush
