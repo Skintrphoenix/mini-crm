@@ -378,63 +378,9 @@
     <script src="/js/demo/datatables-demo.js"></script>
     <script src="/js/main.js"></script>
 
-    <script>
-        $('#comp_tables').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: '{{ route('companies.index') }}', // memanggil route yang menampilkan data json
-            columns: [
-                {
-                    data: 'name',
-                    name: 'name'
-                },
-                {
-                    data: 'email',
-                    name: 'email'
-                },
-                {
-                    data: 'logo',
-                    name: 'logo'
-                },
-                {
-                    data: 'website',
-                    name: 'website'
-                },
-                {
-                    data: 'action',
-                    name: 'action'
-                }
-            ]
-        });
-        $('#emp_tables').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: '{{ route('employees.index') }}', // memanggil route yang menampilkan data json
-            columns: [
-                {
-                    data: 'name',
-                    name: 'name'
-                },
-                {
-                    data: 'company',
-                    name: 'company'
-                },
-                {
-                    data: 'email',
-                    name: 'email'
-                },
-                {
-                    data: 'phone',
-                    name: 'phone'
-                },
-                {
-                    data: 'action',
-                    name: 'action'
-                }
-            ]
-        });
-    </script>
+    @yield('script')
 
+   
 </body>
 
 </html>

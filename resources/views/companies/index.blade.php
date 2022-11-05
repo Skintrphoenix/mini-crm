@@ -64,3 +64,34 @@
     </div>
 
 @endsection
+@section('script')
+<script>
+    $('#comp_tables').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{{ route('companies.index') }}', // memanggil route yang menampilkan data json
+            columns: [
+                {
+                    data: 'name',
+                    name: 'name'
+                },
+                {
+                    data: 'email',
+                    name: 'email'
+                },
+                {
+                    data: 'logo',
+                    name: 'logo'
+                },
+                {
+                    data: 'website',
+                    name: 'website'
+                },
+                {
+                    data: 'action',
+                    name: 'action'
+                }
+            ]
+        });
+</script>
+@endsection

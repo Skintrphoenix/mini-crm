@@ -61,5 +61,36 @@
         </div>
     </div>
 @endsection
+@section('script')
+<script>
+        
+        $('#emp_tables').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{{ route('employees.index') }}', // memanggil route yang menampilkan data json
+            columns: [
+                {
+                    data: 'name',
+                    name: 'name'
+                },
+                {
+                    data: 'company',
+                    name: 'company'
+                },
+                {
+                    data: 'email',
+                    name: 'email'
+                },
+                {
+                    data: 'phone',
+                    name: 'phone'
+                },
+                {
+                    data: 'action',
+                    name: 'action'
+                }
+            ]
+        });
+    </script>
 
-                
+@endsection 
